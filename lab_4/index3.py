@@ -2,14 +2,17 @@ import random
 
 random_numbers = [[random.randint(5, 61) for _ in range(5)] for _ in range(5)]
 
-def bubble_sort(rn):
+def qs(rn):
     
-    n = len(rn)
-    for i in range(n):
-        for j in range(0, n - i - 1):
-            if rn[j] > rn[j + 1]:
-                rn[j], rn[j + 1] = rn[j + 1], rn[j]
-                    
-    return rn
+    if len(rn) <= 1:
+        return rn
+
+    first = rn[len(rn) // 2][0]
     
-print(bubble_sort(random_numbers))
+    left = [x for x in rn if x[0] < first]
+    middle = [x for x in rn if x[0] == first]
+    right = [x for x in rn if x[0] > first]
+
+    return qs(left) + middle + qs(right)
+
+print(qs(random_numbers))
